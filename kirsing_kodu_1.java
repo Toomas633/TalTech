@@ -48,7 +48,7 @@ public class kirsing_kodu_1 {
         System.out.println(leitud);
     }
     public static void ül4(String[] args){
-        String[] sisend ={"a","c","f","j","h"};
+        String[] sisend ={"1","2","3","4","5"};
         if(sisend.length<3) System.out.println("Sõne pole piisavalt pikk!"); //kontolli sõne pikkust
         else{
             String viimane = sisend[sisend.length-1]; //salvesta viimane ja kolmas koht mällu
