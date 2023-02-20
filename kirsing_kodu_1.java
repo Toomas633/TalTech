@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class kirsing_kodu_1 {
     public static void main(String[] args){
         // vastav ülesanne mida käivitatakse ül1, ...2, ...3, ...4 vastavalt
-        ül4(args);
+        ül3(args);
     }
     public static void ül1(String[] args){
         String sisend="paaritu";
@@ -40,7 +40,7 @@ public class kirsing_kodu_1 {
         System.out.println(leidub);
     }
     public static void ül3(String[] args){
-        int[] sisend={3,1,4,55,1,9,0};
+        int[] sisend={3,1,4,55,1,9,2};
         int otsitav=2, leitud=0;
         for(int i=0; i<sisend.length;i++){ //käi iga massiivi liikme kohta läbi
             if(sisend[i] == otsitav) leitud += 1; //iga kord kui leitakse massiivist otsitav suurendatakse muutujat 1e võrra
