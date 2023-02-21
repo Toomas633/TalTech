@@ -279,11 +279,11 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-### R.Bookdown Stack ###
+# R.Bookdown Stack
 # R package: bookdown caching files
 /*_files/
 
-### VisualStudioCode ###
+# VisualStudioCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
