@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class kirsing_3 {
     public static void main(String[] args){
         System.out.println("Ülesanne 1: ");
-        //ül1();
+        ül1();
         System.out.println("Ülesanne 2:");
         ül2();
     }
@@ -26,20 +26,26 @@ public class kirsing_3 {
             num = sc.nextInt();
             if(num >= 1 && num <= 5){
                 int[] arr = new int[num];
-                System.out.print("Sisesta massiivi numbrid: ");
-                for(int i=0; i < arr.length; i++){
-                    arr[i] = sc.nextInt();
-                }
+                while(true){
+                    try{
+                        System.out.print("Sisesta massiivi numbrid (tühikuga eraldatud): ");
+                        for(int i=0; i < arr.length; i++){
+                            arr[i] = sc.nextInt();
+                            sum += arr[i];   
+                        }
+                        break; 
+                    }
+                    catch(Exception e) {
+                        System.err.println("Sisesta ainult täisarve!");
+                        sc.next();
+                    }
+                }                       
                 System.out.println("Sisestatud massiiv on: " + Arrays.toString(arr));
-                for(int i=0; i < arr.length; i++){
-                    sum += arr[i];
-                }
                 System.out.println("Massiivi liikmete summa on: " + sum);
                 break;
             }
             else System.out.println("Vale sisend!");
         }
-
         sc.close();
     }
 }
