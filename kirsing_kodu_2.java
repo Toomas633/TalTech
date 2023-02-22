@@ -1,7 +1,11 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Map.Entry;
 
 public class kirsing_kodu_2 {
@@ -9,6 +13,8 @@ public class kirsing_kodu_2 {
         System.out.println("Ülesanne 1: ");
         System.out.println(ül1());
         System.out.println("Ülesanne 2:");
+         //ül2(Fail kust loetakse andmed, väljundfail õiges formaadis andmetele, väljundfail vales formaadis andmetele)
+        ül2("kodu2_andmed.txt","kodu2_õiged.txt","kodu2_valed.txt");
     }
     static char leiaKõigeSagedasemNumber(String text){
         Map<Character, Integer> hm = new HashMap<Character, Integer>(); //numbrite loendamiseks hashmap
@@ -62,5 +68,84 @@ public class kirsing_kodu_2 {
         char symbol = leiaKõigeSagedasemNumber(text);
         if(symbol == 'e') return "Tekstis pole numbreid!"; //Kui numbreid ei leidunud
         return eemaldaKõigeSagedasemNumber(text, symbol); //eemaldatakse number ja tagastatakse muudetud tekst
+    }
+    static void convert(String sisendfail, String väljund1, String väljund2){
+        File file = new File(sisendfail);
+        File valjund1 = new File(väljund1);
+        File valjund2 = new File(väljund2);
+        try {
+            if(!valjund1.createNewFile()){
+                valjund1.delete();
+                boolean fail1 = valjund1.createNewFile();
+            }
+            if(!valjund2.createNewFile()){
+                valjund2.delete();
+                boolean fail2 = valjund2.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println("Failide muutmisel esines viga!");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        int count = 0;
+        try{
+            Scanner reader = new Scanner(file);
+            while(reader.hasNextLine()){
+                String perenimi="", eesnimi="", isikukood="", palk="";
+                int tmp;
+                Boolean õige = true;
+                FileWriter filewriter = null;
+                String andmed = reader.nextLine();
+                for(int i = 0; i < andmed.length();i++){ //loe eraldajad ega andeid ei puuduks, kui puudub või on liiga palju väljastatakse valede faili
+                    if(andmed.charAt(i) == '|') count ++;
+                }
+                if(count == 3){ //Kui andmed on õiges formaadis
+                    String[] sisend = andmed.split("|");
+                    try{ //kui isikukoodi pole võimalik teha numbriformaati ehk pole isikukood, ei hakka isikukoodi süvakuti kontrolli tegema näiteandmete pärast
+                        tmp = Integer.parseInt(sisend[0]);
+                        isikukood = sisend[0];
+                        perenimi = sisend[1];
+                        eesnimi = sisend[2];
+                        try{ //kui palka pole võimalik teha numbriformaati ehk pole isikukood, ei hakka isikukoodi süvakuti kontrolli tegema näiteandmete pärast
+                            tmp = Integer.parseInt(sisend[3]);
+                            palk = sisend[3];
+                        }
+                        catch (NumberFormatException ex){
+                            õige = false;
+                        }
+                    }
+                    catch (NumberFormatException ex){
+                        õige = false;
+                    }
+                    if(õige){ //kui kontroll läbitud edukalt kirjutatakse faili
+                        filewriter = new FileWriter(valjund1);
+                        filewriter.write("Perekonnanimi: "+perenimi+"%n"+"Eesnimi: "+eesnimi+"%n"+"Isikukood: "+isikukood+"%n"+"Palk: "+palk+"%n");
+                        filewriter.close();
+                    }
+                    else{ //kontrolli ei läbitud kirjutatakse valede faili
+                        filewriter = new FileWriter(valjund2);
+                        filewriter.write(andmed);
+                        filewriter.close();
+                    }
+
+                }
+                else{
+                    filewriter = new FileWriter(valjund2);
+                    filewriter.write(andmed);
+                    filewriter.close();
+                }
+            }
+            reader.close();
+        }
+        catch(IOException e){ //kui sisendfaili ei leidu tagastatakse veateade ja väljutakse
+            System.out.println("Sisendfaili ei leitud!");
+            e.printStackTrace();
+            System.exit(0);
+        }
+
+    }
+    static void ül2(String sisend, String väljund1, String väljund2){
+        convert(sisend, väljund1, väljund2);
+        System.out.println("Failid muudetud!");
     }
 }
