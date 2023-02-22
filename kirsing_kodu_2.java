@@ -70,9 +70,10 @@ public class kirsing_kodu_2 {
         return eemaldaKõigeSagedasemNumber(text, symbol); //eemaldatakse number ja tagastatakse muudetud tekst
     }
     static void convert(String sisendfail, String väljund1, String väljund2){
-        File file = new File(sisendfail);
-        File valjund1 = new File(väljund1);
-        File valjund2 = new File(väljund2);
+        File sisend = new File(sisendfail), valjund1 = new File(väljund1), valjund2 = new File(väljund2);
+        FileWriter filewriter = null;
+        Boolean õige = true;
+        String andmed = "", perenimi="", eesnimi="", isikukood="", palk="";
         try {
             if(!valjund1.createNewFile()){
                 valjund1.delete();
@@ -89,34 +90,34 @@ public class kirsing_kodu_2 {
         }
         int count = 0;
         try{
-            Scanner reader = new Scanner(file);
+            Scanner reader = new Scanner(sisend);
             while(reader.hasNextLine()){
-                String perenimi="", eesnimi="", isikukood="", palk="";
+                System.out.println(reader.nextLine());
                 int tmp;
-                Boolean õige = true;
-                FileWriter filewriter = null;
-                String andmed = reader.nextLine();
+                õige = true;
+                andmed = reader.nextLine();
                 for(int i = 0; i < andmed.length();i++){ //loe eraldajad ega andeid ei puuduks, kui puudub või on liiga palju väljastatakse valede faili
                     if(andmed.charAt(i) == '|') count ++;
                 }
                 if(count == 3){ //Kui andmed on õiges formaadis
-                    String[] sisend = andmed.split("|");
+                    String[] sisendid = andmed.split("\\|");
+                    System.out.println(Arrays.toString(sisendid));
                     try{ //kui isikukoodi pole võimalik teha numbriformaati ehk pole isikukood, ei hakka isikukoodi süvakuti kontrolli tegema näiteandmete pärast
-                        tmp = Integer.parseInt(sisend[0]);
-                        isikukood = sisend[0];
-                        perenimi = sisend[1];
-                        eesnimi = sisend[2];
-                        try{ //kui palka pole võimalik teha numbriformaati ehk pole isikukood, ei hakka isikukoodi süvakuti kontrolli tegema näiteandmete pärast
-                            tmp = Integer.parseInt(sisend[3]);
-                            palk = sisend[3];
-                        }
-                        catch (NumberFormatException ex){
-                            õige = false;
-                        }
+                        tmp = Integer.parseInt(sisendid[0]);
+                        isikukood = sisendid[0];
                     }
                     catch (NumberFormatException ex){
                         õige = false;
                     }
+                    try{ //kui palka pole võimalik teha numbriformaati ehk pole isikukood, ei hakka isikukoodi süvakuti kontrolli tegema näiteandmete pärast
+                        tmp = Integer.parseInt(sisendid[3]);
+                        palk = sisendid[3];
+                    }
+                    catch (NumberFormatException ex){
+                        õige = false;
+                    }
+                    perenimi = sisendid[1];
+                    eesnimi = sisendid[2];
                     if(õige){ //kui kontroll läbitud edukalt kirjutatakse faili
                         filewriter = new FileWriter(valjund1);
                         filewriter.write("Perekonnanimi: "+perenimi+"%n"+"Eesnimi: "+eesnimi+"%n"+"Isikukood: "+isikukood+"%n"+"Palk: "+palk+"%n");
@@ -127,9 +128,8 @@ public class kirsing_kodu_2 {
                         filewriter.write(andmed);
                         filewriter.close();
                     }
-
                 }
-                else{
+                else{ //kontrolli ei läbitud kirjutatakse valede faili
                     filewriter = new FileWriter(valjund2);
                     filewriter.write(andmed);
                     filewriter.close();
@@ -142,7 +142,6 @@ public class kirsing_kodu_2 {
             e.printStackTrace();
             System.exit(0);
         }
-
     }
     static void ül2(String sisend, String väljund1, String väljund2){
         convert(sisend, väljund1, väljund2);
