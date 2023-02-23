@@ -72,6 +72,8 @@ public class kirsing_kodu_2 {
     static void convert(String sisendfail, String väljund1, String väljund2){
         File sisend = new File(sisendfail), valjund1 = new File(väljund1), valjund2 = new File(väljund2);
         FileWriter filewriter = null;
+        String[][] vastused1={};
+        String[] vastused2={};
         Boolean õige = true;
         String andmed = "", perenimi="", eesnimi="", isikukood="", palk="";
         try {
@@ -117,14 +119,16 @@ public class kirsing_kodu_2 {
                     perenimi = sisendid[1];
                     eesnimi = sisendid[2];
                     if(õige){ //kui kontroll läbitud edukalt kirjutatakse faili
-                        filewriter = new FileWriter(valjund1);
-                        filewriter.write("Perekonnanimi: "+perenimi+"\nEesnimi: "+eesnimi+"\nIsikukood: "+isikukood+"\nPalk: "+palk+"\n");
-                        filewriter.close();
+                        String[] temp = {"Perekonnanimi: "+perenimi, "Eesnimi: "+eesnimi, "Isikukood: "+isikukood, "Palk: "+palk};
+                        int n = vastused1.length;
+                        vastused1 = Arrays.copyOf(vastused1, n+1);
+                        vastused1[n] = temp;
+
                     }
                     else{ //kontrolli ei läbitud kirjutatakse valede faili
-                        filewriter = new FileWriter(valjund2);
-                        filewriter.write(andmed);
-                        filewriter.close();
+                        int n = vastused2.length;
+                        vastused2 = Arrays.copyOf(vastused2, n+1);
+                        vastused1[n] = andmed;
                     }
                 }
                 else{ //kontrolli ei läbitud kirjutatakse valede faili
