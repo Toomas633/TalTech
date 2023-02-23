@@ -1,0 +1,10 @@
+Perekonnanimi: Jaanus
+Eesnimi: Jaak
+Isikukood: 61206302181
+Palk: 1025
+
+Perekonnanimi: Linn
+Eesnimi: Anne
+Isikukood: 40410232181
+Palk: 1824
+
