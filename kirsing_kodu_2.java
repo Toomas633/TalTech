@@ -88,14 +88,12 @@ public class kirsing_kodu_2 {
             e.printStackTrace();
             System.exit(0);
         }
-        int count = 0;
         try{
             Scanner reader = new Scanner(sisend);
             while(reader.hasNextLine()){
-                System.out.println(reader.nextLine());
-                int tmp;
                 õige = true;
                 andmed = reader.nextLine();
+                int count = 0;
                 for(int i = 0; i < andmed.length();i++){ //loe eraldajad ega andeid ei puuduks, kui puudub või on liiga palju väljastatakse valede faili
                     if(andmed.charAt(i) == '|') count ++;
                 }
@@ -103,14 +101,14 @@ public class kirsing_kodu_2 {
                     String[] sisendid = andmed.split("\\|");
                     System.out.println(Arrays.toString(sisendid));
                     try{ //kui isikukoodi pole võimalik teha numbriformaati ehk pole isikukood, ei hakka isikukoodi süvakuti kontrolli tegema näiteandmete pärast
-                        tmp = Integer.parseInt(sisendid[0]);
+                        int tmp = Integer.parseInt(sisendid[0]);
                         isikukood = sisendid[0];
                     }
                     catch (NumberFormatException ex){
                         õige = false;
                     }
                     try{ //kui palka pole võimalik teha numbriformaati ehk pole isikukood, ei hakka isikukoodi süvakuti kontrolli tegema näiteandmete pärast
-                        tmp = Integer.parseInt(sisendid[3]);
+                        int tmp = Integer.parseInt(sisendid[3]);
                         palk = sisendid[3];
                     }
                     catch (NumberFormatException ex){
@@ -120,7 +118,7 @@ public class kirsing_kodu_2 {
                     eesnimi = sisendid[2];
                     if(õige){ //kui kontroll läbitud edukalt kirjutatakse faili
                         filewriter = new FileWriter(valjund1);
-                        filewriter.write("Perekonnanimi: "+perenimi+"%n"+"Eesnimi: "+eesnimi+"%n"+"Isikukood: "+isikukood+"%n"+"Palk: "+palk+"%n");
+                        filewriter.write("Perekonnanimi: "+perenimi+"\nEesnimi: "+eesnimi+"\nIsikukood: "+isikukood+"\nPalk: "+palk+"\n");
                         filewriter.close();
                     }
                     else{ //kontrolli ei läbitud kirjutatakse valede faili
@@ -145,6 +143,5 @@ public class kirsing_kodu_2 {
     }
     static void ül2(String sisend, String väljund1, String väljund2){
         convert(sisend, väljund1, väljund2);
-        System.out.println("Failid muudetud!");
     }
 }
