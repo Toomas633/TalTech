@@ -66,18 +66,21 @@ public class kirsing_4 {
             }
             Scanner reader = new Scanner(sisend);
             while(reader.hasNextLine()){
+                String tmp = "";
                 String text = reader.nextLine();
                 String[] tekst = text.split(" ");
                 for(int i=0; i<tekst.length;i++){
                     try {  
                         int number = Integer.parseInt(tekst[i]);
                     } catch(NumberFormatException e){
-                        int n = uustekst.length;
-                        uustekst = Arrays.copyOf(uustekst, n+1);
-                        uustekst[n] = text;
+                        tmp = tmp + tekst[i] + " ";
                     }
                 }
+                int n = uustekst.length;
+                uustekst = Arrays.copyOf(uustekst, n+1);
+                uustekst[n] = tmp;
             }
+            reader.close();
         } catch (IOException e) {
             System.out.println("Esines viga!");
             e.printStackTrace();
