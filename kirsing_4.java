@@ -58,6 +58,7 @@ public class kirsing_4 {
     static void ül2(String sisendfail, String väljundfail){
         File sisend = new File(sisendfail);
         File väljund = new File(väljundfail);
+        String[] uustekst = {};
         try {
             if(!väljund.createNewFile()){
                 väljund.delete();
@@ -67,12 +68,20 @@ public class kirsing_4 {
             while(reader.hasNextLine()){
                 String text = reader.nextLine();
                 String[] tekst = text.split(" ");
-                System.out.println(Arrays.toString(tekst));
+                for(int i=0; i<tekst.length;i++){
+                    try {  
+                        int number = Integer.parseInt(tekst[i]);
+                    } catch(NumberFormatException e){
+                        int n = uustekst.length;
+                        uustekst = Arrays.copyOf(uustekst, n+1);
+                        uustekst[n] = tekst[i];
+                    }
+                }
             }
         } catch (IOException e) {
             System.out.println("Esines viga!");
             e.printStackTrace();
         }
-
+        
     }
 }
