@@ -1,6 +1,12 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 public class kirsing_4 {
     public static void main(String[] args){
@@ -49,7 +55,24 @@ public class kirsing_4 {
             e.printStackTrace();
         }
     }
-    static void ül2(String sisend, String väljund){
+    static void ül2(String sisendfail, String väljundfail){
+        File sisend = new File(sisendfail);
+        File väljund = new File(väljundfail);
+        try {
+            if(!väljund.createNewFile()){
+                väljund.delete();
+                boolean fail = väljund.createNewFile();
+            }
+            Scanner reader = new Scanner(sisend);
+            while(reader.hasNextLine()){
+                String text = reader.nextLine();
+                String[] tekst = text.split(" ");
+                System.out.println(Arrays.toString(tekst));
+            }
+        } catch (IOException e) {
+            System.out.println("Esines viga!");
+            e.printStackTrace();
+        }
 
     }
 }
