@@ -74,7 +74,7 @@ public class kirsing_4 {
                     } catch(NumberFormatException e){
                         int n = uustekst.length;
                         uustekst = Arrays.copyOf(uustekst, n+1);
-                        uustekst[n] = tekst[i];
+                        uustekst[n] = text;
                     }
                 }
             }
@@ -82,6 +82,16 @@ public class kirsing_4 {
             System.out.println("Esines viga!");
             e.printStackTrace();
         }
-        
+        try {
+            FileWriter writer = new FileWriter(väljund);
+            for(int i = 0; i < uustekst.length; i++){
+                writer.write(uustekst[i] + "\n");
+            }
+            writer.close();
+            System.out.println("Tekst kirjutatud faili: " + väljundfail);
+        } catch (IOException e) {
+            System.out.println("Faili kirjutamisel tekkis viga!");
+            e.printStackTrace();
+        }
     }
 }
