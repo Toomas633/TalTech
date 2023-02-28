@@ -87,7 +87,7 @@ public class kirsing_4 {
                 writer.write(uustekst[i] + "\n");
             }
             writer.close();
-            System.out.println("Tekst kirjutatud faili: " + väljundfail);
+            System.out.println("Puhastatud tekst kirjutatud faili: " + väljundfail);
         } catch (IOException e) {
             System.out.println("Faili kirjutamisel tekkis viga!");
             e.printStackTrace();
