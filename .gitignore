@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/java,python,r,c++
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,python,r,c++
+# Created by https://www.toptal.com/developers/gitignore/api/java,python,r,c++,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,python,r,c++,visualstudiocode
 
 ### C++ ###
 # Prerequisites
@@ -279,11 +279,11 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-# R.Bookdown Stack
+### R.Bookdown Stack ###
 # R package: bookdown caching files
 /*_files/
 
-# VisualStudioCode
+### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -302,4 +302,4 @@ rsconnect/
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/
+# End of https://www.toptal.com/developers/gitignore/api/java,python,r,c++,visualstudiocode
