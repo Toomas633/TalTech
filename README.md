@@ -28,10 +28,10 @@ Broneerimiskalendri all on v천imalik n채ha ruumide ja kuup채evade/kellaaegade l�
 
 ## MySQL andmebaas
 
-* host: database-1.caq734o0cfbp.eu-central-1.rds.amazonaws.com
+* host: mysql.toomas633.com
 * port: 3306
-* user: kool
-* paswd: Connection-01
+* user: test
+* paswd: Test-Password01
 
 ### Andmebaasi andmete formaat
 
@@ -44,11 +44,10 @@ _raw:_  `[(datetime.date(2022, 5, 1),), datetime.timedelta(seconds=44100), datet
 
 _puhastatud:_ `broneering[i]`, kus...
 
-- i -
-  - 0 = kuup채ev
-  - 1 = alguskell (sekundites)
-  - 2 = l천ppkell (sekundites)
-  - 3 = nimi
+- 0 = kuup채ev
+- 1 = alguskell (sekundites)
+- 2 = l천ppkell (sekundites)
+- 3 = nimi
 
 ### Kalendri andmete formaat
 
