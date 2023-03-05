@@ -12,10 +12,10 @@ vale_nimi = 0
 broneeringud = []
 
 db = mysql.connector.connect(
-  host="database-1.caq734o0cfbp.eu-central-1.rds.amazonaws.com",
+  host="mysql.toomas633.com",
   port="3306",
-  user="kool",
-  password="Connection-01",
+  user="test",
+  password="Test-Password01",
   database="school"
 )
 
