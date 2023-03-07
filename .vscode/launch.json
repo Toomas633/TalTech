@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "kirsing_5",
+            "request": "launch",
+            "mainClass": "kirsing_5",
+            "projectName": "Objektorienteeritud-programmeerimine_a9d2f3b0"
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
